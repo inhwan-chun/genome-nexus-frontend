@@ -27,6 +27,7 @@ class ClinicalImplication extends React.Component<IClinicalImplicationProps> {
     }
 
     public render() {
+        // console.warn(this.props.civic);
         return (
             <>
                 <OncoKb

@@ -57,7 +57,8 @@ const CivicInfo: React.FunctionComponent<{
 function civicEvidenceToEvidence(
     civicEvidence: ICivicEvidenceSummary
 ): Evidence {
-    return {
+    
+    const evidence = {
         ...civicEvidence,
         clinicalSignificance: civicEvidence.clinicalSignificance.includes(
             ClinicalSignificance.Sensitivity
@@ -65,6 +66,8 @@ function civicEvidenceToEvidence(
             ? ClinicalSignificance.Sensitivity
             : civicEvidence.clinicalSignificance,
     } as Evidence;
+    // console.warn(evidence);
+    return evidence;
 }
 
 @observer
@@ -83,6 +86,7 @@ export default class Civic extends React.Component<ICivicProps> {
     }
 
     public render() {
+        // console.warn(this.props.civic);
         const url = this.props.civic ? this.props.civic.url : DEFAULT_CIVIC_URL;
 
         return (

@@ -130,8 +130,9 @@ export default class EvidenceSummary extends React.Component<IEvidenceSummaryPro
         super(props);
         makeObservable(this);
     }
-
+    
     render() {
+        console.warn(this.props.evidences);
         return this.props.evidences?.length ? (
             <div className={functionalGroupsStyle['data-table']}>
                 <div>

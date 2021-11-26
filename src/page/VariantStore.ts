@@ -25,6 +25,10 @@ import {
 import { ANNOTATION_QUERY_FIELDS } from '../config/configDefaults';
 import { getTranscriptConsequenceSummary } from '../util/AnnotationSummaryUtil';
 
+
+import {Crew} from '../custom/NGeneBioAPI';
+import nGeneBioClient from '../NGeneBioClientInstances';
+
 export interface VariantStoreConfig {
     variant: string;
 }
@@ -80,6 +84,7 @@ export class VariantStore {
         invoke: async () => {
             return await client.fetchVariantAnnotationGET({
                 variant: this.variant,
+                token: "{ \"oncokb\": \"\" }",
                 fields: ANNOTATION_QUERY_FIELDS,
             });
         },
@@ -227,6 +232,17 @@ export class VariantStore {
             return Promise.resolve(
                 this.annotation.result?.successfully_annotated ? true : false
             );
+        },
+    });
+
+    readonly crews: MobxPromise<Crew[]> = remoteData<Crew[]>({
+        invoke: async () => {
+            return nGeneBioClient.fetchCrewsGET({
+                $domain: 'http://localhost:38080'
+            });
+        },
+        onError: (err: Error) => {
+            // fail silently
         },
     });
 }

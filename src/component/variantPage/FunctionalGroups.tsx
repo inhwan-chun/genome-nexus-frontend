@@ -16,6 +16,7 @@ import functionalGroupsStyle from './functionalGroups.module.scss';
 import ClinicalImplication from './ClinicalImplication';
 import { RemoteData } from 'cbioportal-utils';
 import PrevalenceInCancer from './PrevalenceInCancer';
+import { Crew } from '../../custom/NGeneBioAPI';
 
 interface IFunctionalGroupsProps {
     annotationInternal?: VariantAnnotationSummary;
@@ -27,6 +28,7 @@ interface IFunctionalGroupsProps {
     indexAnnotationsByGenomicLocationPromise: RemoteData<{
         [genomicLocation: string]: VariantAnnotation;
     }>;
+    crews?: Crew[];
 }
 
 @observer
@@ -39,6 +41,7 @@ class FunctionalGroups extends React.Component<IFunctionalGroupsProps> {
     }
 
     public render() {
+        //console.warn(this.props);
         return (
             <div className={functionalGroupsStyle['functional-groups']}>
                 <table className={'table'}>
@@ -106,6 +109,35 @@ class FunctionalGroups extends React.Component<IFunctionalGroupsProps> {
                             />
                         </td>
                     </tr>
+                    {/* <tr>
+                        <th>Ngenebio</th>
+                        <td>
+                        {
+                            this.props.crews?.map((crew, index) => (
+                                <div>
+                                    <table>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>{crew.id}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NAME</td>
+                                        <td>{crew.name}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AGE</td>
+                                        <td>{crew.age}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DEPT</td>
+                                        <td>{crew.department}</td>
+                                    </tr>
+                                    </table>
+                                </div>
+                            ))
+                        }
+                        </td>
+                    </tr> */}
                 </table>
 
                 {/*<div className={functionalGroupsStyle['functional-groups']}>*/}

@@ -25,6 +25,7 @@ export type Evidence = {
     level: string;
     drugs: string[];
     disease?: string;
+    name?: string;
 };
 
 export function groupEvidencesByType(evidences: Evidence[]): {

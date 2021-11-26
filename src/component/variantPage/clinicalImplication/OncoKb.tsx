@@ -38,6 +38,7 @@ function treatmentToEvidence(treatment: IndicatorQueryTreatment) {
         disease:
             treatment.levelAssociatedCancerType?.name ||
             treatment.levelAssociatedCancerType?.mainType?.name,
+        id: treatment.pmids?.join() || "",
     };
 }
 
@@ -54,6 +55,7 @@ function implicationToEvidence(implication: Implication) {
         disease:
             implication.tumorType?.name ||
             implication.tumorType?.mainType?.name,
+        id: implication.pmids?.join() || "",
     };
 }
 
@@ -67,8 +69,10 @@ class OncoKb extends React.Component<IOncoKbProps> {
         )
             .concat(this.props.oncokb?.diagnosticImplications || [])
             .map(implicationToEvidence);
+        
+        const evidences = treatmentEvidences.concat(implicationEvidences);
 
-        return treatmentEvidences.concat(implicationEvidences);
+        return /*treatmentEvidences.concat(implicationEvidences)*/evidences;
     }
 
     public oncokbTooltip(oncokbUrl: string) {

@@ -17,6 +17,7 @@ export interface IEvidenceTableProps {
 }
 
 enum EvidenceColumn {
+    ID = 'id',
     Disease = 'disease',
     Drugs = 'drugs',
     Significance = 'clinicalSignificance',
@@ -25,6 +26,7 @@ enum EvidenceColumn {
 }
 
 enum EvidenceColumnName {
+    ID = 'ID',
     Disease = 'Disease',
     Drugs = 'Drugs',
     Significance = 'Significance',
@@ -75,12 +77,19 @@ class EvidenceTable extends React.Component<IEvidenceTableProps> {
                     e.level.toLowerCase().includes(this.searchText)
             );
         }
-
+        // console.warn(data);
         return data;
     }
 
     get columns() {
         return [
+            {
+                id: EvidenceColumn.ID,
+                name: EvidenceColumnName.ID,
+                accessor: EvidenceColumn.ID,
+                searchable: false,
+                Header: <ColumnHeader name={EvidenceColumnName.ID} />,
+            },
             {
                 id: EvidenceColumn.Disease,
                 name: EvidenceColumnName.Disease,

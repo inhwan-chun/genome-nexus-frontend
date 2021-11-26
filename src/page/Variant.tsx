@@ -116,6 +116,10 @@ class Variant extends React.Component<IVariantProps> {
         return [];
     }
 
+    @computed get crews() {
+        return this.props.store.crews.result;
+    }
+
     @action
     private setActiveTranscript = (transcriptId: string) => {
         // set mutation mapper active transcript
@@ -445,6 +449,7 @@ class Variant extends React.Component<IVariantProps> {
                                             ]: VariantAnnotation;
                                         }>
                                     }
+                                    crews={this.crews}
                                 />
                             </Col>
                         </Row>
